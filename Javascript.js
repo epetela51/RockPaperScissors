@@ -18,9 +18,21 @@ let playerChoiceLowercase = playerInput.toLowerCase();
 console.log("Player chose " + playerChoiceLowercase);
 
 
+//function that assigns numeric values to user input
+function assignUserInputValue(input) {
+    if (input = "rock") {
+        let playerChoiceRock = 3;
+        return playerChoiceRock;
+    } else if (input = "scissor") {
+        let playerChoiceScissor = 2;
+        return playerChoiceScissor;
+    } else if (input = "paper") {
+        let playerChoicePaper = 1;
+        return playerChoicePaper;
+    }
+}
 
-
-
+console.log(assignUserInputValue(playerChoiceLowercase));
 
 
 
