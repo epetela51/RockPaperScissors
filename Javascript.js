@@ -49,6 +49,8 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
+let oneRound = playRound(playerChoice, computerChoice);
+
 console.log(`Player chose ${playerChoice} and computer chose ${computerChoice}`)
 
-console.log(playRound(playerChoice, computerChoice))
+console.log(oneRound);
