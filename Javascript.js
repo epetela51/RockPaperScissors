@@ -11,14 +11,28 @@ function computerPlay() {
 //Variable that holds computers choice
 let computerChoice = computerPlay();
 
-console.log("The computers choice is " + computerChoice)
+//function that assigns numeric values to computer choice
+function assignComputerValue(choice) {
+    if (choice == "rock") {
+        return 3;
+    } else if (choice == "scissors") {
+        return 2
+    } else if (choice == "paper") {
+        return 1;
+    } else {
+        return "Something went wrong with computer choice";
+    }
+}
+
+console.log(`Computer chose ${computerChoice} which has a value assigned of ` + assignComputerValue(computerChoice));
+
+
+
+
 
 //variable that holds a players input and converts it to lowercase
 let playerInput = prompt("Please choose either: Rock, paper or scissors");
 let playerChoiceLowercase = playerInput.toLowerCase();
-
-console.log("The players choice is " + playerChoiceLowercase);
-
 
 //function that assigns numeric values to user input
 function assignUserInputValue(input) {
@@ -45,5 +59,9 @@ console.log(`Player chose ${playerChoiceLowercase} which has a value assigned of
 
 //function that plays a single round of Rock Paper Scisssors which takes two parameters - 1 from player and 1 from computer
 function playRound(playerSelection, computerSelection) {
-
+    if (playerSelection > computerSelection) {
+        return true;
+    } else {
+        return false;
+    }
 }
