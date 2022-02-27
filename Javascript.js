@@ -24,14 +24,18 @@ function assignComputerValue(choice) {
     }
 }
 
+//variable that holds the value for the computer choice
+let computerChoiceValue = assignComputerValue(computerChoice);
+
 console.log(`Computer chose ${computerChoice} which has a value assigned of ` + assignComputerValue(computerChoice));
 
 
 
 
 
-//variable that holds a players input and converts it to lowercase
+//variable that holds a players input
 let playerInput = prompt("Please choose either: Rock, paper or scissors");
+//variable that converts players choice to lowercase for easier comparison with computer choice
 let playerChoiceLowercase = playerInput.toLowerCase();
 
 //function that assigns numeric values to user input
@@ -47,6 +51,9 @@ function assignUserInputValue(input) {
     }
 }
 
+//variable that holds the value for the players choice
+let playerChoiceValue = assignUserInputValue(playerChoiceLowercase);
+
 console.log(`Player chose ${playerChoiceLowercase} which has a value assigned of ` + assignUserInputValue(playerChoiceLowercase));
 
 
@@ -60,8 +67,8 @@ console.log(`Player chose ${playerChoiceLowercase} which has a value assigned of
 //function that plays a single round of Rock Paper Scisssors which takes two parameters - 1 from player and 1 from computer
 function playRound(playerSelection, computerSelection) {
     if (playerSelection > computerSelection) {
-        return true;
+        return "You Win";
     } else {
-        return false;
+        return "You Lose";
     }
 }
