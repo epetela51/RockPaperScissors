@@ -23,14 +23,11 @@ console.log("The players choice is " + playerChoiceLowercase);
 //function that assigns numeric values to user input
 function assignUserInputValue(input) {
     if (input == "rock") {
-        let playerChoiceRock = 3;
-        return playerChoiceRock;
+        return 3;
     } else if (input == "scissors") {
-        let playerChoiceScissor = 2;
-        return playerChoiceScissor;
+        return 2
     } else if (input == "paper") {
-        let playerChoicePaper = 1;
-        return playerChoicePaper;
+        return 1;
     } else {
         return "Please choose 'Rock, Paper or Scissors"
     }
