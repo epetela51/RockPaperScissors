@@ -20,19 +20,19 @@ console.log("Player chose " + playerChoiceLowercase);
 
 //function that assigns numeric values to user input
 function assignUserInputValue(input) {
-    if (input = "rock") {
+    if (input == "rock") {
         let playerChoiceRock = 3;
         return playerChoiceRock;
-    } else if (input = "scissor") {
+    } else if (input == "scissors") {
         let playerChoiceScissor = 2;
         return playerChoiceScissor;
-    } else if (input = "paper") {
+    } else if (input == "paper") {
         let playerChoicePaper = 1;
         return playerChoicePaper;
     }
 }
 
-console.log(assignUserInputValue(playerChoiceLowercase));
+console.log("Value assigned is " + assignUserInputValue(playerChoiceLowercase));
 
 
 
