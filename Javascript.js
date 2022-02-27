@@ -11,11 +11,13 @@ function computerPlay() {
 //Variable that holds computers choice
 let computerChoice = computerPlay();
 
+console.log("The computers choice is " + computerChoice)
+
 //variable that holds a players input and converts it to lowercase
 let playerInput = prompt("Please choose either: Rock, paper or scissors");
 let playerChoiceLowercase = playerInput.toLowerCase();
 
-console.log("Player chose " + playerChoiceLowercase);
+console.log("The players choice is " + playerChoiceLowercase);
 
 
 //function that assigns numeric values to user input
@@ -29,10 +31,12 @@ function assignUserInputValue(input) {
     } else if (input == "paper") {
         let playerChoicePaper = 1;
         return playerChoicePaper;
+    } else {
+        return "Please choose 'Rock, Paper or Scissors"
     }
 }
 
-console.log("Value assigned is " + assignUserInputValue(playerChoiceLowercase));
+console.log(`Player chose ${playerChoiceLowercase} which has a value assigned of ` + assignUserInputValue(playerChoiceLowercase));
 
 
 
