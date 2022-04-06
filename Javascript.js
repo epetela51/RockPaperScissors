@@ -84,4 +84,4 @@ function game() {
     } while (playerScore <= 5 || computerScore <= 5);
 }
 
-game();
+//game();
