@@ -85,3 +85,15 @@ function game() {
 }
 
 //game();
+
+
+//buttons
+let playerRock = document.querySelector('#rock');
+let playerPaper = document.querySelector('#paper');
+let playerScissors = document.querySelector('#scissors');
+
+console.log(playerRock, playerPaper, playerScissors)
+
+playerRock.addEventListener('click', () => console.log('you clicked rock'))
+playerPaper.addEventListener('click', () => console.log('you clicked paper'))
+playerScissors.addEventListener('click', () => console.log('you clicked scissors'))
