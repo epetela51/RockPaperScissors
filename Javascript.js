@@ -1,5 +1,5 @@
 //Array that holds values for either Rock, Paper or Scissors
-const rockPaperScissors = ["rock", "paper", "scissors"];
+const rockPaperScissors = ["Rock", "Paper", "Scissors"];
 
 //function that returns a randomly picked option between Rock, Paper & Scissors
 function computerPlay() {
@@ -92,8 +92,20 @@ let playerRock = document.querySelector('#rock');
 let playerPaper = document.querySelector('#paper');
 let playerScissors = document.querySelector('#scissors');
 
-console.log(playerRock, playerPaper, playerScissors)
+//display choices
+let displayPlayerChoice = document.querySelector('#playerChoice')
+let versus = document.querySelector('#vs')
+let displayComputerChoice = document.querySelector('#computerChoice')
 
-playerRock.addEventListener('click', () => console.log('you clicked rock'))
-playerPaper.addEventListener('click', () => console.log('you clicked paper'))
-playerScissors.addEventListener('click', () => console.log('you clicked scissors'))
+function getAndDisplayText(e) {
+    let choice = e.srcElement.innerText
+    displayPlayerChoice.textContent = choice;
+    let computerChoice = computerPlay()
+    displayComputerChoice.textContent = computerChoice
+    versus.textContent = "vs:"
+}
+
+//on button click, get button text & display player vs. computer
+playerRock.addEventListener('click', getAndDisplayText)
+playerPaper.addEventListener('click', getAndDisplayText)
+playerScissors.addEventListener('click', getAndDisplayText)
