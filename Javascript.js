@@ -36,7 +36,7 @@ function playRound(playerSelection, computerSelection) {
             return "Tie, try again!"
         }
     } else {
-        return "Please enter either 'Rock, paper or scissors'";
+        return alert("ERROR");
     }
 }
 
@@ -44,43 +44,38 @@ let playerScore = 0;
 let computerScore = 0;
 
 
-//Function that plays multiple rounds
-function game() {
-    // use a Do While loop so that the game can be played until either the player or computer hit 5 wins first
-    do {
-        //variable that holds a players input
-        let playerInput = prompt("Please choose either: Rock, paper or scissors");
+function game(e) {    
+    
+    let playerChoice = e.target.innerText
+    displayPlayerChoice.textContent = playerChoice;
 
-        //variable that converts players choice to lowercase for easier comparison with computer choice
-        let playerChoice = playerInput.toLowerCase();
-        
-        //this allows a new random choice to be made for the computer on each loop
-        let computerTurn = computerPlay()
+    //gets th e computers choice by running the function and storing it in a variable to use later
+    let computerChoice = computerPlay()
 
-        //store the winner of the individual round
-        let roundResult = playRound(playerChoice, computerTurn);
+    displayComputerChoice.textContent = computerChoice
 
-        //console.log(roundResult);
 
-        //Adds to the players score depending on who wins
-        if (roundResult.search("Win") > 0) {
-            playerScore++;
-        } else if (roundResult.search("Lose") > 0) {
-            computerScore++;
-        }
+    //store the winner of the individual round
+    let roundResult = playRound(playerChoice, computerChoice);
 
-        console.log(`${roundResult} | Player Score is ${playerScore} and Computer Score is ${computerScore}`)
+    //Adds to the players score depending on who wins
+    if (roundResult.search("Win") > 0) {
+        playerScore++;
+        playerCurrentScore.textContent = playerScore
+    } else if (roundResult.search("Lose") > 0) {
+        computerScore++;
+        computerCurrentScore.textContent = computerScore
+    }
 
-        //Puts the final message up to declare a winner
-        if (playerScore == 5) {
-            return console.log("CONGRATS! You are the winner!")
-        } else if (computerScore == 5) {
-            return console.log("OOPS! Computer is the winner try again LOSER")
-        } 
-    } while (playerScore <= 5 || computerScore <= 5);
+    roundWinner.textContent = roundResult
+
+    //Puts the final message up to declare a winner
+    if (playerScore == 5) {
+        return gameWinner.textContent = "CONGRATS! You are the winner!"
+    } else if (computerScore == 5) {
+        return gameWinner.textContent = "OOPS! Computer is the winner try again LOSER"
+    } 
 }
-
-//game();
 
 
 //buttons
@@ -88,27 +83,20 @@ let playerRock = document.querySelector('#rock');
 let playerPaper = document.querySelector('#paper');
 let playerScissors = document.querySelector('#scissors');
 
-//display choices
+//display output
 let displayPlayerChoice = document.querySelector('#playerChoice')
-
 let displayComputerChoice = document.querySelector('#computerChoice')
-
 let roundWinner = document.querySelector('#roundWinner')
+let playerCurrentScore = document.querySelector('#playerScore');
+let computerCurrentScore = document.querySelector('#computerScore');
+let gameWinner = document.querySelector('#gameWinner')
 
-function getAndDisplayText(e) {
-    let playerChoice = e.target.innerText
-    displayPlayerChoice.textContent = playerChoice;
+//on page load show 0 score at game start
+playerCurrentScore.textContent = 0;
+computerCurrentScore.textContent = 0;
 
-    let computerChoice = computerPlay()
-   
-    displayComputerChoice.textContent = computerChoice
-
-    let roundResult = playRound(playerChoice, computerChoice)
-
-    roundWinner.textContent = roundResult;
-}
 
 //on button click, get button text & display player vs. computer
-playerRock.addEventListener('click', getAndDisplayText)
-playerPaper.addEventListener('click', getAndDisplayText)
-playerScissors.addEventListener('click', getAndDisplayText)
+playerRock.addEventListener('click', game)
+playerPaper.addEventListener('click', game)
+playerScissors.addEventListener('click', game)
