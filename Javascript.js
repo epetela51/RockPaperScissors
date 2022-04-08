@@ -15,26 +15,26 @@ let computerChoice = computerPlay();
 
 //function that takes a players choice and compares it to a computers choice to determine a winner
 function playRound(playerSelection, computerSelection) {
-    if (playerSelection == "rock") {
-        if (computerSelection == "scissors") {
+    if (playerSelection == "Rock") {
+        if (computerSelection == "Scissors") {
             return `You Win!  ${playerSelection} beats ${computerSelection}`;
-        } else if (computerSelection == "paper") {
+        } else if (computerSelection == "Paper") {
             return `You Lose!  ${computerSelection} beats ${playerSelection}`;
         } else if (computerSelection == playerSelection) {
             return "Tie, try again!"
         }
-    } else if (playerSelection == "scissors") {
-        if (computerSelection == "paper") {
+    } else if (playerSelection == "Scissors") {
+        if (computerSelection == "Paper") {
             return `You Win!  ${playerSelection} beats ${computerSelection}`;
-        } else if (computerSelection == "rock") {
+        } else if (computerSelection == "Rock") {
             return `You Lose!  ${computerSelection} beats ${playerSelection}`;
         } else if (computerSelection == playerSelection) {
             return "Tie, try again!"
         }
-    } else if (playerSelection == "paper") {
-        if (computerSelection == "rock") {
+    } else if (playerSelection == "Paper") {
+        if (computerSelection == "Rock") {
             return `You Win!  ${playerSelection} beats ${computerSelection}`;
-        } else if (computerSelection == "scissors") {
+        } else if (computerSelection == "Scissors") {
             return `You Lose!  ${computerSelection} beats ${playerSelection}`;
         } else if (computerSelection == playerSelection) {
             return "Tie, try again!"
@@ -94,15 +94,22 @@ let playerScissors = document.querySelector('#scissors');
 
 //display choices
 let displayPlayerChoice = document.querySelector('#playerChoice')
-let versus = document.querySelector('#vs')
+
 let displayComputerChoice = document.querySelector('#computerChoice')
 
+let roundWinner = document.querySelector('#roundWinner')
+
 function getAndDisplayText(e) {
-    let choice = e.srcElement.innerText
-    displayPlayerChoice.textContent = choice;
+    let playerChoice = e.target.innerText
+    displayPlayerChoice.textContent = playerChoice;
+
     let computerChoice = computerPlay()
+   
     displayComputerChoice.textContent = computerChoice
-    versus.textContent = "vs:"
+
+    let roundResult = playRound(playerChoice, computerChoice)
+
+    roundWinner.textContent = roundResult;
 }
 
 //on button click, get button text & display player vs. computer
