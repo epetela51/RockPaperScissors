@@ -8,10 +8,6 @@ function computerPlay() {
     return randomComputerChoice;
 };
 
-//Variable that holds computers choice
-let computerChoice = computerPlay();
-
-
 
 //function that takes a players choice and compares it to a computers choice to determine a winner
 function playRound(playerSelection, computerSelection) {
