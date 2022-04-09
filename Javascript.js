@@ -1,15 +1,39 @@
 //Array that holds values for either Rock, Paper or Scissors
 const rockPaperScissors = ["Rock", "Paper", "Scissors"];
 
-//function that returns a randomly picked option between Rock, Paper & Scissors
+//buttons
+let playerRock = document.querySelector('#rock');
+let playerPaper = document.querySelector('#paper');
+let playerScissors = document.querySelector('#scissors');
+
+let resetBtn = document.createElement('button')
+resetBtn.innerText = 'Play Again';
+
+let playerScore = 0;
+let computerScore = 0;
+
+//on page load show 0 score at game start
+playerCurrentScore.textContent = playerScore;
+computerCurrentScore.textContent = computerScore;
+
+//display output
+let displayPlayerChoice = document.querySelector('#playerChoice');
+let displayComputerChoice = document.querySelector('#computerChoice');
+let roundWinner = document.querySelector('#roundWinner');
+let playerCurrentScore = document.querySelector('#playerScore');
+let computerCurrentScore = document.querySelector('#computerScore');
+let gameWinner = document.querySelector('#gameWinner');
+let gameOver = document.querySelector('#gameOver');
+let resetButton = document.querySelector('#resetBtn');
+
+//Returns a randomly picked option between Rock, Paper & Scissors
 function computerPlay() {
     let randomComputerChoice = rockPaperScissors[Math.floor(Math.random()*rockPaperScissors.length)];
 
     return randomComputerChoice;
 };
 
-
-//function that takes a players choice and compares it to a computers choice to determine a winner
+//Takes a players choice and compares it to a computers choice to determine a winner
 function playRound(playerSelection, computerSelection) {
     if (playerSelection == "Rock") {
         if (computerSelection == "Scissors") {
@@ -40,25 +64,22 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-let playerScore = 0;
-let computerScore = 0;
-
-
+//runs the game on each button click
 function game(e) {    
     
+    //stores players choice based on which button the click
     let playerChoice = e.target.innerText
     displayPlayerChoice.textContent = playerChoice;
 
     //gets the computers choice by running the function and storing it in a variable to use later
     let computerChoice = computerPlay()
-
     displayComputerChoice.textContent = computerChoice
 
 
     //store the winner of the individual round
     let roundResult = playRound(playerChoice, computerChoice);
 
-    //Adds to the players score depending on who wins
+    //Adds to the score
     if (roundResult.search("Win") > 0) {
         playerScore++;
         playerCurrentScore.textContent = playerScore
@@ -69,19 +90,21 @@ function game(e) {
 
     roundWinner.textContent = roundResult
 
-    //Puts the final message up to declare a winner
+    //Puts the final message up to declare a winner and stops game
     if (playerScore == 5) {
         stopGame();
         gameOver.textContent = "GAME OVER"
-        return gameWinner.textContent = "CONGRATS! You are the winner!"
+        gameWinner.textContent = "CONGRATS! You are the winner!"
     } else if (computerScore == 5) {
         stopGame();
         gameOver.textContent = "GAME OVER"
-        return gameWinner.textContent = "OOPS! Computer is the winner try again LOSER"
+        gameWinner.textContent = "OOPS! Computer is the winner try again LOSER"
     } 
 }
 
+//stops game from playing when score = 5 and adds reset button
 function stopGame() {
+    //stops game from playing on btn click when score = 5
     playerRock.removeEventListener('click', game);
     playerPaper.removeEventListener('click', game);
     playerScissors.removeEventListener('click', game);
@@ -91,9 +114,10 @@ function stopGame() {
     resetButton.addEventListener('click', resetGame)
 }
 
+//resets game to play again
 function resetGame() {
     
-    //resets score for game and on screen
+    //resets score
     playerScore = 0;
     playerCurrentScore.textContent = playerScore;
     computerScore = 0;
@@ -113,31 +137,7 @@ function resetGame() {
     playerScissors.addEventListener('click', game)
 }
 
-
-//buttons
-let playerRock = document.querySelector('#rock');
-let playerPaper = document.querySelector('#paper');
-let playerScissors = document.querySelector('#scissors');
-
-let resetBtn = document.createElement('button')
-resetBtn.innerText = 'Play Again';
-
-//display output
-let displayPlayerChoice = document.querySelector('#playerChoice');
-let displayComputerChoice = document.querySelector('#computerChoice');
-let roundWinner = document.querySelector('#roundWinner');
-let playerCurrentScore = document.querySelector('#playerScore');
-let computerCurrentScore = document.querySelector('#computerScore');
-let gameWinner = document.querySelector('#gameWinner');
-let gameOver = document.querySelector('#gameOver');
-let resetButton = document.querySelector('#resetBtn');
-
-//on page load show 0 score at game start
-playerCurrentScore.textContent = playerScore;
-computerCurrentScore.textContent = computerScore;
-
-
-//on button click, get button text & display player vs. computer
+//runs game on btn click
 playerRock.addEventListener('click', game)
 playerPaper.addEventListener('click', game)
 playerScissors.addEventListener('click', game)
