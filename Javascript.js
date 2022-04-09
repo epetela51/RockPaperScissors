@@ -49,7 +49,7 @@ function game(e) {
     let playerChoice = e.target.innerText
     displayPlayerChoice.textContent = playerChoice;
 
-    //gets th e computers choice by running the function and storing it in a variable to use later
+    //gets the computers choice by running the function and storing it in a variable to use later
     let computerChoice = computerPlay()
 
     displayComputerChoice.textContent = computerChoice
@@ -71,10 +71,18 @@ function game(e) {
 
     //Puts the final message up to declare a winner
     if (playerScore == 5) {
+        stopGame();
         return gameWinner.textContent = "CONGRATS! You are the winner!"
     } else if (computerScore == 5) {
+        stopGame();
         return gameWinner.textContent = "OOPS! Computer is the winner try again LOSER"
     } 
+}
+
+function stopGame() {
+    playerRock.removeEventListener('click', game);
+    playerPaper.removeEventListener('click', game);
+    playerScissors.removeEventListener('click', game);
 }
 
 
