@@ -8,6 +8,8 @@ let playerScissors = document.querySelector('#scissors');
 
 let resetBtn = document.createElement('button')
 resetBtn.innerText = 'Play Again';
+//Add bootstrap class to reset button
+resetBtn.setAttribute('class', 'btn btn-primary mt-3 btn-lg');
 
 let playerScore = 0;
 let computerScore = 0;
@@ -21,6 +23,10 @@ let computerCurrentScore = document.querySelector('#computerScore');
 let gameWinner = document.querySelector('#gameWinner');
 let gameOver = document.querySelector('#gameOver');
 let resetButton = document.querySelector('#resetBtn');
+let gameScores = document.querySelector('#gameScores');
+
+//hides scores on page load
+gameScores.style.display = 'none';
 
 //Returns a randomly picked option between Rock, Paper & Scissors
 function computerPlay() {
@@ -65,11 +71,14 @@ function game(e) {
     
     //stores players choice based on which button the click
     let playerChoice = e.target.innerText
-    displayPlayerChoice.textContent = playerChoice;
+    displayPlayerChoice.textContent = `${playerChoice} vs: `;
 
     //gets the computers choice by running the function and storing it in a variable to use later
     let computerChoice = computerPlay()
     displayComputerChoice.textContent = computerChoice
+
+    //shows scores when game click starts
+    gameScores.style.display = 'block'
 
 
     //store the winner of the individual round
@@ -90,11 +99,13 @@ function game(e) {
     if (playerScore == 5) {
         stopGame();
         gameOver.textContent = "GAME OVER"
+        gameWinner.setAttribute('class', 'text-success my-4');
         gameWinner.textContent = "CONGRATS! You are the winner!"
     } else if (computerScore == 5) {
         stopGame();
         gameOver.textContent = "GAME OVER"
-        gameWinner.textContent = "OOPS! Computer is the winner try again LOSER"
+        gameWinner.setAttribute('class', 'text-danger my-4');
+        gameWinner.textContent = "Sorry! Computer is the winner try again"
     } 
 }
 
@@ -105,7 +116,12 @@ function stopGame() {
     playerPaper.removeEventListener('click', game);
     playerScissors.removeEventListener('click', game);
 
-    resetButton.appendChild(resetBtn)
+    resetButton.appendChild(resetBtn);
+
+    //Makes buttons look disabled and grayed out/not clickable
+    playerRock.classList.add('disabled');
+    playerPaper.classList.add('disabled');
+    playerScissors.classList.add('disabled');
 
     resetButton.addEventListener('click', resetGame)
 }
@@ -125,8 +141,16 @@ function resetGame() {
     roundWinner.textContent = '';
     gameWinner.textContent = '';
     gameOver.textContent = '';
+
+    //hides scores on reset
+    gameScores.style.display = 'none'
     
     resetBtn.remove();
+
+    //Makes the buttons look clickable again
+    playerRock.classList.remove('disabled');
+    playerPaper.classList.remove('disabled');
+    playerScissors.classList.remove('disabled');
 
     playerRock.addEventListener('click', game)
     playerPaper.addEventListener('click', game)
