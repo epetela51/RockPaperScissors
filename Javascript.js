@@ -9,10 +9,10 @@ let playerScissors = document.querySelector('#scissors');
 let resetBtn = document.createElement('button')
 resetBtn.innerText = 'Play Again';
 //Add bootstrap class to reset button
-resetBtn.setAttribute('class', 'btn btn-primary mt-5 btn-lg');
+resetBtn.setAttribute('class', 'btn btn-primary mt-3 btn-lg');
 
-let playerScore = 4;
-let computerScore = 4;
+let playerScore = 0;
+let computerScore = 0;
 
 //display output
 let displayPlayerChoice = document.querySelector('#playerChoice');
@@ -23,6 +23,10 @@ let computerCurrentScore = document.querySelector('#computerScore');
 let gameWinner = document.querySelector('#gameWinner');
 let gameOver = document.querySelector('#gameOver');
 let resetButton = document.querySelector('#resetBtn');
+let gameScores = document.querySelector('#gameScores');
+
+//hides scores on page load
+gameScores.style.display = 'none'
 
 //Returns a randomly picked option between Rock, Paper & Scissors
 function computerPlay() {
@@ -73,6 +77,9 @@ function game(e) {
     let computerChoice = computerPlay()
     displayComputerChoice.textContent = computerChoice
 
+    //shows scores when game click starts
+    gameScores.style.display = 'block'
+
 
     //store the winner of the individual round
     let roundResult = playRound(playerChoice, computerChoice);
@@ -92,10 +99,12 @@ function game(e) {
     if (playerScore == 5) {
         stopGame();
         gameOver.textContent = "GAME OVER"
+        gameWinner.setAttribute('class', 'text-success my-4');
         gameWinner.textContent = "CONGRATS! You are the winner!"
     } else if (computerScore == 5) {
         stopGame();
         gameOver.textContent = "GAME OVER"
+        gameWinner.setAttribute('class', 'text-danger my-4');
         gameWinner.textContent = "Sorry! Computer is the winner try again"
     } 
 }
@@ -132,6 +141,9 @@ function resetGame() {
     roundWinner.textContent = '';
     gameWinner.textContent = '';
     gameOver.textContent = '';
+
+    //hides scores on reset
+    gameScores.style.display = 'none'
     
     resetBtn.remove();
 
