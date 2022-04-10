@@ -12,10 +12,6 @@ resetBtn.innerText = 'Play Again';
 let playerScore = 0;
 let computerScore = 0;
 
-//on page load show 0 score at game start
-playerCurrentScore.textContent = playerScore;
-computerCurrentScore.textContent = computerScore;
-
 //display output
 let displayPlayerChoice = document.querySelector('#playerChoice');
 let displayComputerChoice = document.querySelector('#computerChoice');
@@ -136,6 +132,10 @@ function resetGame() {
     playerPaper.addEventListener('click', game)
     playerScissors.addEventListener('click', game)
 }
+
+//on page load show 0 score at game start
+playerCurrentScore.textContent = playerScore;
+computerCurrentScore.textContent = computerScore;
 
 //runs game on btn click
 playerRock.addEventListener('click', game)
