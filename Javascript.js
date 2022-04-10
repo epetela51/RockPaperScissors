@@ -26,7 +26,7 @@ let resetButton = document.querySelector('#resetBtn');
 let gameScores = document.querySelector('#gameScores');
 
 //hides scores on page load
-gameScores.style.display = 'none'
+gameScores.style.display = 'none';
 
 //Returns a randomly picked option between Rock, Paper & Scissors
 function computerPlay() {
