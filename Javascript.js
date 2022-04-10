@@ -8,9 +8,11 @@ let playerScissors = document.querySelector('#scissors');
 
 let resetBtn = document.createElement('button')
 resetBtn.innerText = 'Play Again';
+//Add bootstrap class to reset button
+resetBtn.setAttribute('class', 'btn btn-primary');
 
-let playerScore = 0;
-let computerScore = 0;
+let playerScore = 4;
+let computerScore = 4;
 
 //display output
 let displayPlayerChoice = document.querySelector('#playerChoice');
@@ -65,7 +67,7 @@ function game(e) {
     
     //stores players choice based on which button the click
     let playerChoice = e.target.innerText
-    displayPlayerChoice.textContent = playerChoice;
+    displayPlayerChoice.textContent = `${playerChoice} vs: `;
 
     //gets the computers choice by running the function and storing it in a variable to use later
     let computerChoice = computerPlay()
@@ -94,7 +96,7 @@ function game(e) {
     } else if (computerScore == 5) {
         stopGame();
         gameOver.textContent = "GAME OVER"
-        gameWinner.textContent = "OOPS! Computer is the winner try again LOSER"
+        gameWinner.textContent = "Sorry! Computer is the winner try again"
     } 
 }
 
@@ -105,7 +107,12 @@ function stopGame() {
     playerPaper.removeEventListener('click', game);
     playerScissors.removeEventListener('click', game);
 
-    resetButton.appendChild(resetBtn)
+    resetButton.appendChild(resetBtn);
+
+    //Makes buttons look disabled and grayed out/not clickable
+    playerRock.classList.add('disabled');
+    playerPaper.classList.add('disabled');
+    playerScissors.classList.add('disabled');
 
     resetButton.addEventListener('click', resetGame)
 }
@@ -127,6 +134,11 @@ function resetGame() {
     gameOver.textContent = '';
     
     resetBtn.remove();
+
+    //Makes the buttons look clickable again
+    playerRock.classList.remove('disabled');
+    playerPaper.classList.remove('disabled');
+    playerScissors.classList.remove('disabled');
 
     playerRock.addEventListener('click', game)
     playerPaper.addEventListener('click', game)
