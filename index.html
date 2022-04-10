@@ -21,10 +21,12 @@
                 <h1>Play Rock Paper Scissors... If You Dare</h1>
                 <p>First to 5 wins</p>
 
-                <button id="rock" class="btn btn-primary">Rock</button>
-                <button id="paper" class="btn btn-primary">Paper</button>
-                <button id="scissors" class="btn btn-primary">Scissors</button>
-
+                <!-- small screens = full width btns.  Bigger than sml screens have btns take up 8 col -->
+                <div class="d-grid gap-3 d-sm-block col-8 mx-auto">
+                    <button id="rock" class="btn btn-primary mx-2">Rock</button>
+                    <button id="paper" class="btn btn-primary mx-2">Paper</button>
+                    <button id="scissors" class="btn btn-primary mx-2">Scissors</button>
+                </div>
 
                 <p>Player vs: Computer </p>
                 <p><span id="playerChoice"></span><span id="computerChoice"></span></p>
