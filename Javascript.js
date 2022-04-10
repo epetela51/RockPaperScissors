@@ -9,7 +9,7 @@ let playerScissors = document.querySelector('#scissors');
 let resetBtn = document.createElement('button')
 resetBtn.innerText = 'Play Again';
 //Add bootstrap class to reset button
-resetBtn.setAttribute('class', 'btn btn-primary');
+resetBtn.setAttribute('class', 'btn btn-primary mt-5 btn-lg');
 
 let playerScore = 4;
 let computerScore = 4;
